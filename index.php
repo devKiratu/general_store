@@ -1,6 +1,7 @@
 <?php
 require_once('utils.php');
 spl_autoload_register('load_class');
+header("Content-type: application/json; charset=UTF-8");
 
 $database = new \Models\Database("localhost", "demo-app", "root");
 $pdo = $database->getConnection();
