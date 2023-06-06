@@ -1,4 +1,4 @@
-function ProductCard({ product }) {
+function BookCard({ product }) {
   return (
     <div className="p-card">
       <input
@@ -11,9 +11,10 @@ function ProductCard({ product }) {
       />
       <p>{product.sku}</p>
       <p>{product.name}</p>
-      <p>{product.price}$</p>
+      <p>{product.price} $</p>
+      <p>{product.weight}KG</p>
     </div>
   );
 }
 
-export default ProductCard;
+export default BookCard;
