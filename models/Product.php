@@ -10,9 +10,9 @@ abstract class Product
 
   abstract public function createProduct(\PDO $pdo);
 
-  public static function getALl(\PDO $pdo)
+  public static function getAll(\PDO $pdo)
   {
-    $sql = "select p.sku, p.name, p.price, b.weight, dvd.size, f.length, f.width, f.height
+    $sql = "select p.sku, p.name, p.price, p.product_type, b.weight, dvd.size, f.length, f.width, f.height
             from products as p
             left join books as b
             on p.sku = b.sku
