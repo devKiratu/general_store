@@ -9,25 +9,19 @@ abstract class Product
   protected $price;
 
   abstract public function createProduct(\PDO $pdo);
+  abstract public static function fetchData(\PDO $pdo);
 
-  public static function getALl(\PDO $pdo)
+  public static function getAll(\PDO $pdo)
   {
-    $sql = "select p.sku, p.name, p.price, b.weight, dvd.size, f.length, f.width, f.height
-            from products as p
-            left join books as b
-            on p.sku = b.sku
-            left join dvd
-            on p.sku = dvd.sku
-            left join furniture as f
-            on f.sku = p.sku
-            order by p.sku";
+    $books = Book::fetchData($pdo);
+    $furniture = Furniture::fetchData($pdo);
+    $dvds = DVD::fetchData($pdo);
 
-    $stmt = $pdo->query($sql);
+    $data = array_merge($books, $furniture, $dvds);
 
-    $data = $stmt->fetchAll();
+    //order merged data by sku
+    usort($data, fn ($a, $b) => $a->sku > $b->sku);
 
     return $data;
-
-    //TODO fetch inidvidual products, aggregate results and return to avoid null columns and unrelated entries
   }
 }

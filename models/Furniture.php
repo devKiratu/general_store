@@ -49,4 +49,20 @@ class Furniture extends Product
       die($e->getMessage());
     }
   }
+
+  public static function fetchData(\PDO $pdo)
+  {
+    $sql = "select p.sku, p.name, p.price, p.product_type, f.length, f.width, f.height
+            from products as p
+            left join furniture as f
+            on f.sku = p.sku
+            where p.product_type = 'furniture'
+            order by p.sku";
+
+    $stmt = $pdo->query($sql);
+
+    $data = $stmt->fetchAll();
+
+    return $data;
+  }
 }

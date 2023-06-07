@@ -42,10 +42,11 @@ class ProductController
     $data = (array) json_decode(file_get_contents("php://input"));
     $category = ucfirst($data['productType']);
 
-    $r = new \ReflectionClass($category);
+    $cls = "\Models\\" . $category;
+    $r = new \ReflectionClass($cls);
 
-    if ($r->isSubclassOf(new \ReflectionClass("Product"))) {
-      $product = new $category($data);
+    if ($r->isSubclassOf(new \ReflectionClass("\Models\Product"))) {
+      $product = new $cls($data);
       $product->createProduct($this->pdo);
       http_response_code(201);
       echo json_encode([
