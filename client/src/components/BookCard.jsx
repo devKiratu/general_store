@@ -12,7 +12,7 @@ function BookCard({ product }) {
       <p>{product.sku}</p>
       <p>{product.name}</p>
       <p>{product.price} $</p>
-      <p>{product.weight}KG</p>
+      <p>Weight: {product.weight}KG</p>
     </div>
   );
 }
