@@ -39,4 +39,20 @@ class DVD extends Product
       die($e->getMessage());
     }
   }
+
+  public static function fetchData(\PDO $pdo)
+  {
+    $sql = "select p.sku, p.name, p.price, p.product_type, dvd.size
+            from products as p
+            left join dvd
+            on p.sku = dvd.sku
+            where p.product_type = 'DVD'
+            order by p.sku";
+
+    $stmt = $pdo->query($sql);
+
+    $data = $stmt->fetchAll();
+
+    return $data;
+  }
 }
