@@ -13,8 +13,7 @@ function FurnitureCard({ product }) {
       <p>{product.name}</p>
       <p>{product.price} $</p>
       <p>
-        Dimension:
-        {product.height}x{product.width}x{product.length}
+        Dimension: {product.height}x{product.width}x{product.length}
       </p>
     </div>
   );
