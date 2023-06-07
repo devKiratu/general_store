@@ -1,8 +1,8 @@
 <?php
 require_once('utils.php');
 spl_autoload_register('load_class');
-header("Content-type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Origin: *");
+header("Content-type: application/json; charset=UTF-8");
 
 $url_parts = explode("/", $_SERVER['REQUEST_URI']);
 

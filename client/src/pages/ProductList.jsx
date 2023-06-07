@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import BookCard from "../components/BookCard";
 import FurnitureCard from "../components/FurnitureCard";
 import DVDCard from "../components/DVDCard";
+import { Link } from "react-router-dom";
 
 function ProductList() {
   const [products, setProducts] = useState([]);
@@ -21,7 +22,9 @@ function ProductList() {
         <nav>
           <h2>Product List</h2>
           <div className="btns">
-            <button>Add</button>
+            <Link to={"/addproduct"}>
+              <button>Add</button>
+            </Link>
             <button>Mass Delete</button>
           </div>
         </nav>
