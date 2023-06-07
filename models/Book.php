@@ -2,8 +2,6 @@
 
 namespace Models;
 
-use PDO;
-
 class Book extends Product
 {
   protected $sku;
