@@ -32,9 +32,9 @@ function ProductList() {
         <div className="p-list">
           {products.map((p) => {
             switch (p.product_type) {
-              case "book":
+              case "Book":
                 return <BookCard key={p.sku} product={p} />;
-              case "furniture":
+              case "Furniture":
                 return <FurnitureCard key={p.sku} product={p} />;
               case "DVD":
                 return <DVDCard key={p.sku} product={p} />;
