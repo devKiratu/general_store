@@ -7,6 +7,7 @@ abstract class Product
   protected $sku;
   protected $name;
   protected $price;
+  protected $product_type;
 
   abstract public function createProduct(\PDO $pdo);
   abstract public static function fetchData(\PDO $pdo);
