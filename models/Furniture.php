@@ -7,6 +7,7 @@ class Furniture extends Product
   protected $sku;
   protected $name;
   protected $price;
+  protected $product_type;
   protected $length;
   protected $width;
   protected $height;
@@ -16,6 +17,7 @@ class Furniture extends Product
     $this->sku = $data['sku'];
     $this->name = $data['name'];
     $this->price = $data['price'];
+    $this->product_type = $data['productType'];
     $this->length = $data['length'];
     $this->width = $data['width'];
     $this->height = $data['height'];
@@ -27,10 +29,10 @@ class Furniture extends Product
     try {
       $pdo->beginTransaction();
 
-      $sql = "insert into products (sku, name, price)
-                values (:sku, :name, :price)";
+      $sql = "insert into products (sku, name, price, product_type)
+                values (:sku, :name, :price, :product_type)";
       $stmt = $pdo->prepare($sql);
-      $stmt->execute(["sku" => $this->sku, "name" => $this->name, "price" => $this->price]);
+      $stmt->execute(["sku" => $this->sku, "name" => $this->name, "price" => $this->price, "product_type" => $this->product_type]);
 
       $sql2 = "insert into furniture (sku, length, width, height)
                 values (:sku, :length, :width, :height)";

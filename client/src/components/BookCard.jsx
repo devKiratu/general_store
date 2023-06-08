@@ -1,4 +1,4 @@
-function BookCard({ product }) {
+function BookCard({ product, onMarkForDelete }) {
   return (
     <div className="p-card">
       <input
@@ -6,7 +6,7 @@ function BookCard({ product }) {
         id={product.sku}
         className="delete-checkbox"
         onClick={(e) => {
-          console.log(e.target.id, e.target.checked);
+          onMarkForDelete(e.target.id);
         }}
       />
       <p>{product.sku}</p>
