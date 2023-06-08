@@ -14,12 +14,18 @@ class ProductController
       case "GET":
         $this->get();
         break;
-      case "POST":
-        $this->create();
-        break;
-      case "DELETE":
-        $this->delete();
-        break;
+      case "POST": {
+          if (str_contains($_SERVER['REQUEST_URI'], "delete")) {
+            $this->delete();
+          } else {
+
+            $this->create();
+          }
+          break;
+        }
+      default:
+        http_response_code(405);
+        header("Allow: GET, POST");
     }
   }
 
@@ -27,7 +33,9 @@ class ProductController
   {
     $data = (array) json_decode(file_get_contents("php://input"));
     foreach ($data['ids'] as $id) {
-      var_dump($id);
+      $sql = "delete from products where sku = :id";
+      $stmt = $this->pdo->prepare($sql);
+      $stmt->execute(["id" => $id]);
     }
   }
 

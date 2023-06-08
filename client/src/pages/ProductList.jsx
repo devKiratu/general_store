@@ -6,12 +6,31 @@ import { Link } from "react-router-dom";
 
 function ProductList() {
   const [products, setProducts] = useState([]);
-  async function loadProducts() {
+  const [ids, setIds] = useState([]);
+  const loadProducts = async () => {
     const res = await fetch("http://localhost:3000/products");
     const data = await res.json();
     console.log(data);
     setProducts(data);
-  }
+  };
+
+  const updateDeleteObj = (id) => {
+    if (ids.includes(id)) {
+      setIds(ids.filter((el) => el !== id));
+    } else {
+      setIds([...ids, id]);
+    }
+  };
+
+  const handleDelete = async () => {
+    console.log("TO DELETE ====> ", ids);
+    setProducts(products.filter((p) => !ids.includes(p.sku)));
+
+    await fetch("http://localhost:3000/products/delete", {
+      method: "POST",
+      body: JSON.stringify({ ids }),
+    });
+  };
 
   useEffect(() => {
     loadProducts();
@@ -25,7 +44,9 @@ function ProductList() {
             <Link to={"/addproduct"}>
               <button>Add</button>
             </Link>
-            <button>Mass Delete</button>
+            <button id="delete-product-btn" onClick={handleDelete}>
+              Mass Delete
+            </button>
           </div>
         </nav>
         <hr />
@@ -33,11 +54,29 @@ function ProductList() {
           {products.map((p) => {
             switch (p.product_type) {
               case "Book":
-                return <BookCard key={p.sku} product={p} />;
+                return (
+                  <BookCard
+                    key={p.sku}
+                    product={p}
+                    onMarkForDelete={updateDeleteObj}
+                  />
+                );
               case "Furniture":
-                return <FurnitureCard key={p.sku} product={p} />;
+                return (
+                  <FurnitureCard
+                    key={p.sku}
+                    product={p}
+                    onMarkForDelete={updateDeleteObj}
+                  />
+                );
               case "DVD":
-                return <DVDCard key={p.sku} product={p} />;
+                return (
+                  <DVDCard
+                    key={p.sku}
+                    product={p}
+                    onMarkForDelete={updateDeleteObj}
+                  />
+                );
               default:
                 return null;
             }
