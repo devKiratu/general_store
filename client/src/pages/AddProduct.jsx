@@ -15,6 +15,9 @@ function AddProduct() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (currentProduct === null || currentProduct === "Type Switcher") {
+      return;
+    }
     let product = {
       sku,
       name,
@@ -112,7 +115,7 @@ function AddProduct() {
               <option defaultValue>Type Switcher</option>
               <option id={"DVD"}>DVD</option>
               <option id={"Furniture"}>Furniture</option>
-              <option id={""}>Book</option>
+              <option id={"Book"}>Book</option>
             </select>
           </div>
           {currentProduct === "DVD" && (
