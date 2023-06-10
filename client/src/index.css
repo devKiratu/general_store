@@ -40,7 +40,7 @@ nav {
 
 button {
   padding: 5px 8px;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   cursor: pointer;
 }
 

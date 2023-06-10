@@ -42,10 +42,10 @@ function ProductList() {
           <h2>Product List</h2>
           <div className="btns">
             <Link to={"/addproduct"}>
-              <button>Add</button>
+              <button>ADD</button>
             </Link>
             <button id="delete-product-btn" onClick={handleDelete}>
-              Mass Delete
+              MASS DELETE
             </button>
           </div>
         </nav>
