@@ -48,7 +48,7 @@ function AddProduct() {
   };
 
   const saveProduct = async (product) => {
-    const res = await fetch("http://localhost:3000/products", {
+    const res = await fetch("https://ndunguc.000webhostapp.com/products", {
       method: "POST",
       body: JSON.stringify(product),
     });

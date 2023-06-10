@@ -8,7 +8,7 @@ function ProductList() {
   const [products, setProducts] = useState([]);
   const [ids, setIds] = useState([]);
   const loadProducts = async () => {
-    const res = await fetch("http://localhost:3000/products");
+    const res = await fetch("https://ndunguc.000webhostapp.com/products");
     const data = await res.json();
     console.log(data);
     setProducts(data);
@@ -26,7 +26,7 @@ function ProductList() {
     console.log("TO DELETE ====> ", ids);
     setProducts(products.filter((p) => !ids.includes(p.sku)));
 
-    await fetch("http://localhost:3000/products/delete", {
+    await fetch("https://ndunguc.000webhostapp.com/products/delete", {
       method: "POST",
       body: JSON.stringify({ ids }),
     });
