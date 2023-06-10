@@ -115,3 +115,8 @@ select {
 .type-container input {
   width: 200px;
 }
+
+.error-msg {
+  color: tomato;
+  font-weight: bold;
+}

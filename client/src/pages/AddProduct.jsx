@@ -11,13 +11,12 @@ function AddProduct() {
   const [height, setHeight] = useState("");
   const [width, setWidth] = useState("");
   const [length, setLength] = useState("");
+  const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (currentProduct === null || currentProduct === "Type Switcher") {
-      return;
-    }
+    if (validateErrors()) return;
     let product = {
       sku,
       name,
@@ -57,6 +56,16 @@ function AddProduct() {
     console.log("RESPONSE =====>", data);
   };
 
+  const validateErrors = () => {
+    if (currentProduct === null || currentProduct === "Type Switcher") {
+      setErrors({
+        ...errors,
+        productType: "Please select product type",
+      });
+      return true;
+    }
+  };
+
   return (
     <div className="page-container">
       <main>
@@ -64,10 +73,10 @@ function AddProduct() {
           <h2>Product Add</h2>
           <div className="btns">
             <button form="product_form" type="submit">
-              Save
+              SAVE
             </button>
             <Link to={"/"}>
-              <button>Cancel</button>
+              <button>CANCEL</button>
             </Link>
           </div>
         </nav>
@@ -103,6 +112,10 @@ function AddProduct() {
               required
               value={price}
               onChange={(e) => setPrice(e.target.value)}
+              onInvalid={(e) =>
+                e.target.setCustomValidity("Please enter a valid price in $")
+              }
+              onInput={(e) => e.target.setCustomValidity("")}
             />
           </div>
           <div className="input-grp">
@@ -118,6 +131,9 @@ function AddProduct() {
               <option id={"Book"}>Book</option>
             </select>
           </div>
+          {errors.productType && (
+            <p className="error-msg">{errors.productType}</p>
+          )}
           {currentProduct === "DVD" && (
             <div className="type-container">
               <div className="input-grp">
