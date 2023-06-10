@@ -73,10 +73,10 @@ function AddProduct() {
           <h2>Product Add</h2>
           <div className="btns">
             <button form="product_form" type="submit">
-              SAVE
+              Save
             </button>
             <Link to={"/"}>
-              <button>CANCEL</button>
+              <button>Cancel</button>
             </Link>
           </div>
         </nav>
