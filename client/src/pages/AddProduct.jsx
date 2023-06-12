@@ -41,22 +41,26 @@ function AddProduct() {
       default:
         break;
     }
-    console.log("Product ====> ", product);
     saveProduct(product);
     navigate("/", { replace: true });
   };
 
   const saveProduct = async (product) => {
-    const res = await fetch("https://ndunguc.000webhostapp.com/products", {
+    await fetch("https://ndunguc.000webhostapp.com/products", {
       method: "POST",
       body: JSON.stringify(product),
     });
-    const data = await res.json();
-
-    console.log("RESPONSE =====>", data);
   };
 
   const validateErrors = () => {
+    if (sku.trim() === "") {
+      setErrors({ ...errors, sku: "Please provide a valid SKU" });
+      return true;
+    }
+    if (name.trim() === "") {
+      setErrors({ ...errors, name: "Please provide a valid name" });
+      return true;
+    }
     if (currentProduct === null || currentProduct === "Type Switcher") {
       setErrors({
         ...errors,
@@ -89,9 +93,17 @@ function AddProduct() {
               id="sku"
               required
               value={sku}
-              onChange={(e) => setSku(e.target.value)}
+              onChange={(e) => {
+                setErrors({ ...errors, sku: "" });
+                setSku(e.target.value);
+              }}
+              onInvalid={(e) =>
+                e.target.setCustomValidity("Please enter a valid SKU")
+              }
+              onInput={(e) => e.target.setCustomValidity("")}
             />
           </div>
+          {errors.sku && <p className="error-msg">{errors.sku}</p>}
           <div className="input-grp">
             <label htmlFor="name">Name</label>
             <input
@@ -100,8 +112,13 @@ function AddProduct() {
               required
               value={name}
               onChange={(e) => setName(e.target.value)}
+              onInvalid={(e) =>
+                e.target.setCustomValidity("Please enter a valid name")
+              }
+              onInput={(e) => e.target.setCustomValidity("")}
             />
           </div>
+          {errors.name && <p className="error-msg">{errors.name}</p>}
           <div className="input-grp">
             <label htmlFor="price">Price ($)</label>
             <input
@@ -122,7 +139,10 @@ function AddProduct() {
             <label htmlFor="productType">Type Switcher</label>
             <select
               id="productType"
-              onChange={(e) => setCurrentProduct(e.target.value)}
+              onChange={(e) => {
+                setErrors({ ...errors, productType: "" });
+                setCurrentProduct(e.target.value);
+              }}
               required
             >
               <option defaultValue>Type Switcher</option>
@@ -145,9 +165,15 @@ function AddProduct() {
                   required
                   value={size}
                   onChange={(e) => setSize(e.target.value)}
+                  onInvalid={(e) =>
+                    e.target.setCustomValidity(
+                      "Please enter a valid size in MB"
+                    )
+                  }
+                  onInput={(e) => e.target.setCustomValidity("")}
                 />
               </div>
-              <p>Please provide size</p>
+              <p className="type-desc">Please provide size in MB</p>
             </div>
           )}
           {currentProduct === "Furniture" && (
@@ -162,6 +188,12 @@ function AddProduct() {
                   required
                   value={height}
                   onChange={(e) => setHeight(e.target.value)}
+                  onInvalid={(e) =>
+                    e.target.setCustomValidity(
+                      "Please enter a valid height in CM"
+                    )
+                  }
+                  onInput={(e) => e.target.setCustomValidity("")}
                 />
               </div>
               <div className="input-grp">
@@ -174,6 +206,12 @@ function AddProduct() {
                   required
                   value={width}
                   onChange={(e) => setWidth(e.target.value)}
+                  onInvalid={(e) =>
+                    e.target.setCustomValidity(
+                      "Please enter a valid width in CM"
+                    )
+                  }
+                  onInput={(e) => e.target.setCustomValidity("")}
                 />
               </div>
               <div className="input-grp">
@@ -186,9 +224,17 @@ function AddProduct() {
                   required
                   value={length}
                   onChange={(e) => setLength(e.target.value)}
+                  onInvalid={(e) =>
+                    e.target.setCustomValidity(
+                      "Please enter a valid length in CM"
+                    )
+                  }
+                  onInput={(e) => e.target.setCustomValidity("")}
                 />
               </div>
-              <p>Please provide dimensions</p>
+              <p className="type-desc">
+                Please provide dimensions in HxWxL format
+              </p>
             </div>
           )}
           {currentProduct === "Book" && (
@@ -203,9 +249,15 @@ function AddProduct() {
                   required
                   value={weight}
                   onChange={(e) => setWeight(e.target.value)}
+                  onInvalid={(e) =>
+                    e.target.setCustomValidity(
+                      "Please enter a valid weight in KG"
+                    )
+                  }
+                  onInput={(e) => e.target.setCustomValidity("")}
                 />
               </div>
-              <p>Please provide weight</p>
+              <p className="type-desc">Please provide weight in KG</p>
             </div>
           )}
         </form>
