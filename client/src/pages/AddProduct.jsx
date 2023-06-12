@@ -41,19 +41,15 @@ function AddProduct() {
       default:
         break;
     }
-    console.log("Product ====> ", product);
     saveProduct(product);
     navigate("/", { replace: true });
   };
 
   const saveProduct = async (product) => {
-    const res = await fetch("https://ndunguc.000webhostapp.com/products", {
+    await fetch("https://ndunguc.000webhostapp.com/products", {
       method: "POST",
       body: JSON.stringify(product),
     });
-    const data = await res.json();
-
-    console.log("RESPONSE =====>", data);
   };
 
   const validateErrors = () => {

@@ -10,7 +10,6 @@ function ProductList() {
   const loadProducts = async () => {
     const res = await fetch("https://ndunguc.000webhostapp.com/products");
     const data = await res.json();
-    console.log(data);
     setProducts(data);
   };
 
@@ -23,7 +22,6 @@ function ProductList() {
   };
 
   const handleDelete = async () => {
-    console.log("TO DELETE ====> ", ids);
     setProducts(products.filter((p) => !ids.includes(p.sku)));
 
     await fetch("https://ndunguc.000webhostapp.com/products/delete", {
