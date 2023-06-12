@@ -11,7 +11,7 @@ function DVDCard({ product, onMarkForDelete }) {
       />
       <p>{product.sku}</p>
       <p>{product.name}</p>
-      <p>{product.price}$</p>
+      <p>{product.price} $</p>
       <p>Size: {product.size} MB</p>
     </div>
   );

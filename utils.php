@@ -2,9 +2,8 @@
 function load_class($class)
 {
   $prefixes = [
-    'Controllers\\' => 'Controllers/',
-    'Models\\' => 'Models/',
-    'Services\\' => 'Services/'
+    'Controllers\\' => 'controllers/',
+    'Models\\' => 'models/',
   ];
 
   $base_dir = __DIR__ . '/';

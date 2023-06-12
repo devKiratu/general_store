@@ -11,7 +11,12 @@ if ($url_parts[1] != "products") {
   exit;
 }
 
-$database = new \Models\Database("localhost", "demo-app", "root");
+$host = "localhost";
+$dbname = "demo-app";
+$user = "root";
+$password = "";
+
+$database = new \Models\Database($host, $dbname, $user, $password);
 $pdo = $database->getConnection();
 $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
 
