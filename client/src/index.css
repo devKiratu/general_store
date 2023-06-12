@@ -114,4 +114,6 @@ select {
 .error-msg {
   color: tomato;
   font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 10px;
 }

@@ -111,7 +111,10 @@ function AddProduct() {
               id="name"
               required
               value={name}
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) => {
+                setErrors({ ...errors, name: "" });
+                setName(e.target.value);
+              }}
               onInvalid={(e) =>
                 e.target.setCustomValidity("Please enter a valid name")
               }
