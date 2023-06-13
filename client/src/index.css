@@ -39,6 +39,7 @@ nav {
 button {
   padding: 5px 8px;
   cursor: pointer;
+  border: 1px solid gray;
 }
 
 .p-list {
@@ -116,4 +117,10 @@ select {
   font-weight: bold;
   font-size: 14px;
   margin-bottom: 10px;
+}
+
+#delete-product-btn:hover {
+  background-color: tomato;
+  color: #fff;
+  border: 1px solid tomato;
 }
