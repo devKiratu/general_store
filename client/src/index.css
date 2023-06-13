@@ -118,9 +118,3 @@ select {
   font-size: 14px;
   margin-bottom: 10px;
 }
-
-#delete-product-btn:hover {
-  background-color: tomato;
-  color: #fff;
-  border: 1px solid tomato;
-}
