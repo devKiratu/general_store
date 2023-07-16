@@ -83,7 +83,7 @@ function ProductList() {
       </main>
       <footer>
         <hr />
-        <p>Scandiweb Test assignment</p>
+        <p>Happy hacking!</p>
       </footer>
     </div>
   );
